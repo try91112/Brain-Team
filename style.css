@@ -32,7 +32,6 @@ main { flex: 1; }
   top: 0;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(10px);
-  z-index: 10;
 }
 
 .logo {
@@ -51,15 +50,16 @@ main { flex: 1; }
   font-size: 0.95rem;
   transition: color 0.2s;
 }
-.nav a:hover { color: var(--text); }
+.nav a:hover, .nav a.active { color: var(--text); }
 
 /* Hero */
 .hero {
   max-width: 760px;
   margin: 0 auto;
-  padding: 120px 24px 80px;
+  padding: 120px 24px 100px;
   text-align: center;
 }
+.hero.small { padding: 90px 24px 60px; }
 
 .hero h1 {
   font-size: clamp(2rem, 5vw, 3.2rem);
@@ -78,9 +78,10 @@ main { flex: 1; }
   margin-right: auto;
 }
 
+/* Кнопка */
 .btn {
   display: inline-block;
-  margin-top: 36px;
+  margin-top: 20px;
   padding: 13px 30px;
   background: var(--text);
   color: var(--bg);
@@ -89,6 +90,8 @@ main { flex: 1; }
   font-weight: 600;
   font-size: 0.95rem;
   transition: transform 0.2s, opacity 0.2s;
+  cursor: pointer;
+  border: none;
 }
 .btn:hover { transform: translateY(-2px); opacity: 0.8; }
 
@@ -96,10 +99,10 @@ main { flex: 1; }
 .about {
   max-width: 800px;
   margin: 0 auto;
-  padding: 40px 24px 60px;
+  padding: 20px 24px 100px;
   text-align: center;
 }
-.about h2, .contacts h2 {
+.about h2 {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -107,6 +110,7 @@ main { flex: 1; }
   margin-bottom: 28px;
   font-weight: 600;
 }
+
 .about-text {
   color: var(--text);
   font-size: 1.15rem;
@@ -118,8 +122,7 @@ main { flex: 1; }
 .contacts {
   max-width: 620px;
   margin: 0 auto;
-  padding: 40px 24px 120px;
-  text-align: center;
+  padding: 0 24px 60px;
 }
 .contact-item {
   display: flex;
@@ -130,7 +133,7 @@ main { flex: 1; }
   flex-wrap: wrap;
   gap: 8px;
 }
-.contact-item:first-of-type { border-top: 1px solid var(--line); }
+.contact-item:first-child { border-top: 1px solid var(--line); }
 .label {
   color: var(--muted);
   font-size: 0.9rem;
@@ -145,6 +148,94 @@ main { flex: 1; }
 }
 .contact-item a:hover { color: var(--muted); }
 
+/* Ticket Section */
+.ticket-section {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 0 24px 100px;
+  text-align: center;
+}
+.ticket-section h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Модальное окно */
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background-color: var(--bg-soft);
+  margin: 5% auto;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text);
+}
+
+.close {
+  color: var(--muted);
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close:hover { color: var(--text); }
+
+.modal .form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+.modal .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.modal .form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  background-color: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+.modal .form-group input:focus {
+  outline: none;
+  border-color: var(--text);
+}
+
 /* Footer */
 .footer {
   text-align: center;
@@ -158,8 +249,7 @@ main { flex: 1; }
 @media (max-width: 600px) {
   .header { padding: 18px 20px; }
   .nav a { margin-left: 18px; font-size: 0.9rem; }
-  .hero { padding: 80px 20px 60px; }
-  .about { padding-bottom: 40px; }
-  .contacts { padding-bottom: 80px; }
-  .contact-item { flex-direction: column; align-items: center; text-align: center; }
+  .hero { padding: 80px 20px 70px; }
+  .about { padding-bottom: 70px; }
+  .contact-item { flex-direction: column; align-items: flex-start; }
 }
